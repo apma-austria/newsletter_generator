@@ -13,9 +13,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username YOURUSERNAME --password-stdin
-        docker build . --file Dockerfile --tag YOURUSERNAME/IMAGENAME:latest
-        docker push YOURUSERNAME/IMAGENAME:latest
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username michabirklbauer --password-stdin
+        docker build . --file Dockerfile --tag michabirklbauer/apmanewsletter:latest
+        docker push michabirklbauer/apmanewsletter:latest
         GIT_SHA="$(git rev-parse --short HEAD)"
-        docker tag YOURUSERNAME/IMAGENAME:latest YOURUSERNAME/IMAGENAME:$GIT_SHA
-        docker push YOURUSERNAME/IMAGENAME:$GIT_SHA
+        docker tag michabirklbauer/apmanewsletter:latest michabirklbauer/apmanewsletter:$GIT_SHA
+        docker push michabirklbauer/apmanewsletter:$GIT_SHA
