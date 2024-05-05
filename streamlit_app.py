@@ -18,6 +18,7 @@
 
 # import packages
 import streamlit as st
+
 from functions import generate_html
 from functions import get_issue_date
 from defaults import APMA_CONTENT_DEFAULT
@@ -27,8 +28,10 @@ from defaults import EUPA_NEWS_DEFAULT
 from defaults import NATIONAL_EVENTS_DEFAULT
 from defaults import INTERNATIONAL_EVENTS_DEFAULT
 
+# the newsletter generator site
 def validated() -> None:
 
+    # set default states
     if "apma_content" not in st.session_state:
         st.session_state["apma_content"] = ""
     if "apma_journal_club" not in st.session_state:
@@ -61,8 +64,16 @@ def validated() -> None:
         """
         description = st.markdown(general_description)
 
+        general_info = \
+        """
+        Please be aware that all inputs are only saved as long as the page is open.
+        Closing or reloading the page will delete all inputs, even if they were saved!
+        """
+        info = st.info(general_info.strip())
+
         header = st.subheader("Data Input", divider = "rainbow")
 
+        # apma content input
         i1t = \
         """
         **APMA_CONTENT**
@@ -71,8 +82,8 @@ def validated() -> None:
         box. So any APMA related news, reviews, announcements and other info that
         might fit here should be described below. The general structure should be
         a list, so please start every item with `<li>` and end it with `</li>`,
-        an example is provided. You can also load the default to work with the
-        example.
+        an example is provided. You can also load the example to work with the
+        default of a previous newsletter.
 
         As usual the box support html tags, so highlighting elements can be achieved
         with `<b>` and `</b>`. Links should be denoted with `<a href="URL">` and
@@ -102,7 +113,7 @@ def validated() -> None:
 
         with i1cols[1]:
 
-            i1d = st.button(label = "Load default!",
+            i1d = st.button(label = "Load Example!",
                             key = "i1d",
                             use_container_width = True,
                             help = "Load the default html for this textbox! Only works for empty boxes!")
@@ -114,6 +125,7 @@ def validated() -> None:
                 else:
                     st.error("Textbox not empty, can't load default content! If you want to load the default, delete everything from the textbox, save and try again!")
 
+        # apma journal club input
         i2t = \
         """
         **APMA_JOURNAL_CLUB**
@@ -122,7 +134,7 @@ def validated() -> None:
         box. So any APMA Journal Club related news, announcements or other info that
         might fit here should be described below. The general structure should be
         just raw text, there is no support for list items. You can also load the
-        default to work with the example.
+        example to work with the default of a previous newsletter.
 
         As usual the box support html tags, so highlighting elements can be achieved
         with `<b>` and `</b>`. Links should be denoted with `<a href="URL">` and
@@ -152,7 +164,7 @@ def validated() -> None:
 
         with i2cols[1]:
 
-            i2d = st.button(label = "Load default!",
+            i2d = st.button(label = "Load Example!",
                             key = "i2d",
                             use_container_width = True,
                             help = "Load the default html for this textbox! Only works for empty boxes!")
@@ -164,6 +176,7 @@ def validated() -> None:
                 else:
                     st.error("Textbox not empty, can't load default content! If you want to load the default, delete everything from the textbox, save and try again!")
 
+        # apma omics tech hub input
         i3t = \
         """
         **APMA_OMICS_HUB**
@@ -172,7 +185,7 @@ def validated() -> None:
         box. So any APMA Omics Tech Hub related news, announcements or other info that
         might fit here should be described below. The general structure should be
         just raw text, there is no support for list items. You can also load the
-        default to work with the example.
+        example to work with the default of a previous newsletter.
 
         As usual the box support html tags, so highlighting elements can be achieved
         with `<b>` and `</b>`. Links should be denoted with `<a href="URL">` and
@@ -202,7 +215,7 @@ def validated() -> None:
 
         with i3cols[1]:
 
-            i3d = st.button(label = "Load default!",
+            i3d = st.button(label = "Load Example!",
                             key = "i3d",
                             use_container_width = True,
                             help = "Load the default html for this textbox! Only works for empty boxes!")
@@ -214,6 +227,7 @@ def validated() -> None:
                 else:
                     st.error("Textbox not empty, can't load default content! If you want to load the default, delete everything from the textbox, save and try again!")
 
+        # eupa and eubic news input
         i4t = \
         """
         **EUPA_NEWS**
@@ -222,8 +236,8 @@ def validated() -> None:
         box. So any EUPA and EuBIC related news, announcements or other info that
         might fit here should be described below. The general structure should be
         a list, so please start every item with `<li>` and end it with `</li>`,
-        an example is provided. You can also load the default to work with the
-        example.
+        an example is provided. You can also load the example to work with the
+        default of a previous newsletter.
 
         As usual the box support html tags, so highlighting elements can be achieved
         with `<b>` and `</b>`. Links should be denoted with `<a href="URL">` and
@@ -253,7 +267,7 @@ def validated() -> None:
 
         with i4cols[1]:
 
-            i4d = st.button(label = "Load default!",
+            i4d = st.button(label = "Load Example!",
                             key = "i4d",
                             use_container_width = True,
                             help = "Load the default html for this textbox! Only works for empty boxes!")
@@ -265,6 +279,7 @@ def validated() -> None:
                 else:
                     st.error("Textbox not empty, can't load default content! If you want to load the default, delete everything from the textbox, save and try again!")
 
+        # national events input
         i5t = \
         """
         **NATIONAL_EVENTS**
@@ -273,8 +288,8 @@ def validated() -> None:
         box. So any national related news, announcements or other info that
         might fit here should be described below. The general structure should be
         a list, so please start every item with `<li>` and end it with `</li>`,
-        an example is provided. You can also load the default to work with the
-        example.
+        an example is provided. You can also load the example to work with the
+        default of a previous newsletter.
 
         As usual the box support html tags, so highlighting elements can be achieved
         with `<b>` and `</b>`. Links should be denoted with `<a href="URL">` and
@@ -304,7 +319,7 @@ def validated() -> None:
 
         with i5cols[1]:
 
-            i5d = st.button(label = "Load default!",
+            i5d = st.button(label = "Load Example!",
                             key = "i5d",
                             use_container_width = True,
                             help = "Load the default html for this textbox! Only works for empty boxes!")
@@ -316,6 +331,7 @@ def validated() -> None:
                 else:
                     st.error("Textbox not empty, can't load default content! If you want to load the default, delete everything from the textbox, save and try again!")
 
+        # international events input
         i6t = \
         """
         **INTERNATIONAL_EVENTS**
@@ -324,8 +340,8 @@ def validated() -> None:
         box. So any international related news, announcements or other info that
         might fit here should be described below. The general structure should be
         a list, so please start every item with `<li>` and end it with `</li>`,
-        an example is provided. You can also load the default to work with the
-        example.
+        an example is provided. You can also load the example to work with the
+        default of a previous newsletter.
 
         As usual the box support html tags, so highlighting elements can be achieved
         with `<b>` and `</b>`. Links should be denoted with `<a href="URL">` and
@@ -355,7 +371,7 @@ def validated() -> None:
 
         with i6cols[1]:
 
-            i6d = st.button(label = "Load default!",
+            i6d = st.button(label = "Load Example!",
                             key = "i6d",
                             use_container_width = True,
                             help = "Load the default html for this textbox! Only works for empty boxes!")
@@ -367,7 +383,7 @@ def validated() -> None:
                 else:
                     st.error("Textbox not empty, can't load default content! If you want to load the default, delete everything from the textbox, save and try again!")
 
-        html = st.download_button(label = "Generate and download newsletter!",
+        html = st.download_button(label = "Generate & Download the Newsletter!",
                                   data = generate_html(i1, i2, i3, i4, i5, i6),
                                   file_name = "apma_newsletter_" + get_issue_date().replace(" ", "-").replace(",", "") + ".html",
                                   mime = "text/html",
@@ -375,10 +391,13 @@ def validated() -> None:
                                   type = "primary",
                                   use_container_width = True)
 
+    # display structure of the newsletter on right column
     with cols[1]:
         st.image("img/template.png",
                  caption = "Template structure of the APMA Newsletter. Does not contain all style elements and does NOT resemble the look of the final newsletter!")
 
+# if not logged in this will be displayed
+# simple login form that is not secure, but should keep away accidental guests
 def not_validated() -> None:
 
     title = st.title("APMA Newsletter Generator - Login")
@@ -447,7 +466,19 @@ def main() -> None:
 
     doc = st.sidebar.markdown(about_str)
 
-    contact_str = "**Contact:** [micha.birklbauer@gmail.com](mailto:micha.birklbauer@gmail.com)"
+    apma_str = \
+    """
+    [**APMA**](https://www.apma.at/) is short for Austrian Proteomics and Metabolomics Association.
+    APMA's mission is to represent researchers in the fields of proteomics, lipidomics, metabolomics
+    and bioinformatics in Austria and to foster a community that emphasizes scientific dialogue,
+    exchange of ideas and supporting researchers at any point of their career.
+    """
+    apma = st.sidebar.markdown(apma_str)
+
+    apma_web_str = "**APMA:** [Web](https://www.apma.at/), [Mail](mailto:office@apma.at)"
+    apma_web = st.sidebar.markdown(apma_web_str)
+
+    contact_str = "**Contact:** [Micha Birklbauer](mailto:micha.birklbauer@gmail.com)"
     contact = st.sidebar.markdown(contact_str)
 
     project_str = "**Project Page:** [GitHub](https://github.com/apma-austria/newsletter_generator)"
